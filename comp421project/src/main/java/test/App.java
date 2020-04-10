@@ -3,27 +3,13 @@ import java.sql.* ;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
-
+import test.AddUserToRewardProgramController;
 
 
 public class App
 {
-    public static void main ( String [ ] args ) throws SQLException
+    public static void main ( String [] args ) throws SQLException
     {
-	// Unique table names.  Either the user supplies a unique identifier as a command line argument, or the program makes one up.
-	String tableName = "";
-        int sqlCode=0;      // Variable to hold SQLCODE
-        String sqlState="00000";  // Variable to hold SQLSTATE
-
-	if ( args.length > 0 ){
-	    tableName += args [ 0 ] ;
-	}
-	else {
-	    tableName += "example3.tbl";
-	}
-	
-	
-	// Register the driver.  You must register the driver before you can use it.
     try {
     DriverManager.registerDriver ( new org.postgresql.Driver() ) ;
 } catch (Exception cnfe){
@@ -36,71 +22,41 @@ String url = "jdbc:postgresql://comp421.cs.mcgill.ca:5432/cs421";
 String username = "cs421g14"; 
 String password = "Comp421g14"; 
 Connection con = DriverManager.getConnection (url,username, password) ;
-Statement statement = con.createStatement ( ) ;
+Statement statement = con.createStatement() ;
+String useremail = "john.doe@shakespear.com"; 
+String userphonenumer = null; 
+String name = "John Doe"; 
+String useraddress = "100 Fake Street"; 
+boolean userExisted = AddUserToRewardProgramController.CheckIfUserexisted(statement, useremail); 
+if(userExisted){
+	AddUserToRewardProgramController.AddExsitedUserToLoyaltyProgram(statement, "6", "Calendar"); 
+}
+else{
+	AddUserToRewardProgramController.AddNonExsitedUserToLoyaltyProgram(statement, useremail, userphonenumer, name, useraddress, "6", "Calendar");
+}
 
-	// Creating a table
-	try {
-	    String createSQL = "\\d";
-	    System.out.println (createSQL ) ;
-	    statement.executeUpdate (createSQL ) ;
-	    System.out.println ("DONE");
-	}catch (SQLException e)
-            {
-                sqlCode = e.getErrorCode(); // Get SQLCODE
-                sqlState = e.getSQLState(); // Get SQLSTATE
-                
-                // Your code to handle errors comes here;
-                // something more meaningful than a print would be good
-                System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
-            }
-
-	// Inserting Data into the table
-	// try {
-	//     String insertSQL = "INSERT INTO " + tableName + " VALUES ( 1 , \'Vicki\' ) " ;
-	//     System.out.println ( insertSQL ) ;
-	//     statement.executeUpdate ( insertSQL ) ;
-	//     System.out.println ( "DONE" ) ;
-
-	//     insertSQL = "INSERT INTO " + tableName + " VALUES ( 2 , \'Vera\' ) " ;
-	//     System.out.println ( insertSQL ) ;
-	//     statement.executeUpdate ( insertSQL ) ;
-	//     System.out.println ( "DONE" ) ;
-	//     insertSQL = "INSERT INTO " + tableName + " VALUES ( 3 , \'Franca\' ) " ;
-	//     System.out.println ( insertSQL ) ;
-	//     statement.executeUpdate ( insertSQL ) ;
-	//     System.out.println ( "DONE" ) ;
-
-	// } catch (SQLException e)
-    //         {
-    //             sqlCode = e.getErrorCode(); // Get SQLCODE
-    //             sqlState = e.getSQLState(); // Get SQLSTATE
-                
-    //             // Your code to handle errors comes here;
-    //             // something more meaningful than a print would be good
-    //             System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
-    //         }
 
 	// // Querying a table
-	// try {
-	//     String querySQL = "SELECT id, name from " + tableName + " WHERE NAME = \'Vicki\'";
-	//     System.out.println (querySQL) ;
-	//     java.sql.ResultSet rs = statement.executeQuery ( querySQL ) ;
-	//     while ( rs.next ( ) ) {
-	// 	int id = rs.getInt ( 1 ) ;
-	// 	String name = rs.getString (2);
-	// 	System.out.println ("id:  " + id);
-	// 	System.out.println ("name:  " + name);
-	//     }
-	//     System.out.println ("DONE");
-	// } catch (SQLException e)
-	//     {
-	// 	sqlCode = e.getErrorCode(); // Get SQLCODE
-	// 	sqlState = e.getSQLState(); // Get SQLSTATE
-                
-	// 	// Your code to handle errors comes here;
-	// 	// something more meaningful than a print would be good
-	// 	System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
-	//     }
+	// 	try {
+	// 		String querySQL = "SELECT * from  customer WHERE email = "+email;
+	// 		System.out.println (querySQL) ;
+	// 		java.sql.ResultSet rs = statement.executeQuery ( querySQL ) ;
+	// 		while ( rs.next ( ) ) {
+	// 		int id = rs.getInt ( 1 ) ;
+	// 		String name = rs.getString (2);
+	// 		System.out.println ("id:  " + id);
+	// 		System.out.println ("name:  " + name);
+	// 		}
+	// 		System.out.println ("DONE");
+	// 	} catch (SQLException e)
+	// 		{
+	// 		sqlCode = e.getErrorCode(); // Get SQLCODE
+	// 		sqlState = e.getSQLState(); // Get SQLSTATE
+					
+	// 		// Your code to handle errors comes here;
+	// 		// something more meaningful than a print would be good
+	// 		System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
+	// 		}
 
 	// //Updating a table
     // 	try {
