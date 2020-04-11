@@ -4,6 +4,8 @@ import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Scanner;
+
 import test.AddUserToRewardProgramController;
 import test.LookUpNailArtistController;
 import test.MakeAndCancelAppointment;
@@ -13,6 +15,7 @@ public class App {
 	public static void main(String[] args) throws SQLException {
 		try {
 			DriverManager.registerDriver(new org.postgresql.Driver());
+			
 		} catch (Exception cnfe) {
 			System.out.println("Class not found");
 		}
@@ -28,6 +31,85 @@ public class App {
 		String userphonenumer = null;
 		String name = "John Doe";
 		String useraddress = "100 Fake Street";
+		
+boolean continueLoop1 = true;
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Hello, welcome to the Nail Salon Management System and Database!");
+        System.out.println("What would you like to do?");
+        
+        while(continueLoop1) {
+            
+            System.out.println("---------------------------");
+            System.out.println("Select one of the following options to continue:");
+            System.out.println("---------------------------");
+            System.out.println("1) Look up a nail artist's appointments.");
+            System.out.println("2) Make an appointment.");
+            System.out.println("3) Cancel an appointment.");
+            System.out.println("4) Add a user to the rewards program.");
+            System.out.println("5) Make a rating");
+            System.out.println("6) Quit.");
+            System.out.println("---------------------------");
+                
+            boolean validInput = false;
+            
+            do{
+                
+                if(scanner.hasNextInt()){
+                    
+                    int userInput = scanner.nextInt();
+                    
+                    if((userInput >= 1) && (userInput <= 6)) {
+                        
+                        validInput = true;
+                        
+                        if(userInput == 1){
+                          System.out.println("Enter the email address of the nail artist you want to view the appointments of:");
+                          String nailArtistEmail = scanner.nextLine();
+                          LookUpNailArtistController.LookUp(statement, nailArtistEmail);
+                        }
+                        
+                        else if(userInput == 2){
+                            
+                        }
+                        
+                        else if(userInput == 3){
+                        
+                        }
+                        
+                        else if(userInput == 4){
+                            
+                        }
+                        
+                        else if(userInput == 5){
+                            
+                        }
+                        
+                        else{
+                            System.out.println("Goodbye.");
+                            continueLoop1 = false;
+                        }
+                    }
+                    
+                    else {
+                        System.out.println("Enter a valid option from 1-6");
+                    }
+                }
+                
+                else{
+                    scanner.nextLine();
+                    System.out.println("Enter a valid option from 1-6:");
+                }
+                
+            }while(!validInput);
+            
+            
+            
+        }
+        
+        scanner.close();
+
 
 		// Commands to Add user into Loyalty Program
 		// boolean userExisted =
@@ -42,7 +124,7 @@ public class App {
 		// }
 
 		// Commands to execute Look up Nail Artist Query
-		// LookUpNailArtistController.LookUp(statement, "severus.snape@gmail.com");
+		// 
 
 		// Commands to Make and Cancel Appointment
 		// MakeAndCancelAppointment.MakeCustomAppointment(statement, "11:00:00",
