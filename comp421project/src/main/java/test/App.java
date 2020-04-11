@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
 import test.AddUserToRewardProgramController;
+import test.LookUpNailArtistController;
 
 
 public class App
