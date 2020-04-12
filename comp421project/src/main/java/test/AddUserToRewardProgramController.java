@@ -2,10 +2,17 @@ package test;
 
 import java.sql.*;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class AddUserToRewardProgramController {
 
-    public static void AddExsitedUserToLoyaltyProgram(Statement statement, String membershipnum, String rewards) {
+    public static void AddExsitedUserToLoyaltyProgram(Scanner scanner, Statement statement){
+      System.out.println("Enter the membership number of the customer you want to add to the loyalty program:");
+      Scanner scanner1 = new Scanner(System.in);
+      if (scanner1.hasNext()){
+        String membershipnum = scanner1.nextLine();
+        System.out.println("Enter the rewards the customer is entitled to:");
+        String rewards = scanner1.nextLine();
         int sqlCode = 0; // Variable to hold SQLCODE
         String sqlState = "00000"; // Variable to hold SQLSTATE
         if (membershipnum == "" || membershipnum == null) {
@@ -29,10 +36,25 @@ public class AddUserToRewardProgramController {
                 System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
             }
         }
+      }
     }
 
-    public static void AddNonExsitedUserToLoyaltyProgram(Statement statement, String useremail, String phonenumber,
-            String name, String address, String membershipnum, String rewards) {
+    public static void AddNonExsitedUserToLoyaltyProgram(Scanner scanner, Statement statement){ 
+      System.out.println("Enter the email of the customer you want to add to the loyalty program:");
+      Scanner scanner1 = new Scanner(System.in);
+      if (scanner1.hasNext()){
+        String useremail = scanner1.nextLine();
+        System.out.println("Enter the phone number of the customer you want to add to the loyalty program:");
+        String phonenumber = scanner1.nextLine();
+        System.out.println("Enter the name of the customer you want to add to the loyalty program:");
+        String name = scanner1.nextLine();
+        System.out.println("Enter the address of the customer you want to add to the loyalty program:");
+        String address = scanner1.nextLine();
+        System.out.println("Enter the membership number of the customer you want to add to the loyalty program:");
+        String membershipnum = scanner1.nextLine();
+        System.out.println("Enter the rewards the customer is entitled to:");
+        String rewards = scanner1.nextLine();
+   
         int sqlCode = 0; // Variable to hold SQLCODE
         String sqlState = "00000"; // Variable to hold SQLSTATE
         if (membershipnum == "" || membershipnum == null) {
@@ -62,6 +84,7 @@ public class AddUserToRewardProgramController {
             sqlState = e.getSQLState(); // Get SQLSTATE
             System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
         }
+      }
     }
 
     public static boolean CheckIfUserexisted(Statement statement, String useremail) {
