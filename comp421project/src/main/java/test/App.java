@@ -47,7 +47,7 @@ boolean continueLoop = true;
             System.out.println("4) Add an existing user to the rewards program.");
             System.out.println("5) Add a new user to the rewards program.");
             System.out.println("6) Make a rating");
-            System.out.println("6) Quit.");
+            System.out.println("7) Quit.");
             System.out.println("---------------------------");
                 
             boolean validInput = false;
@@ -55,7 +55,7 @@ boolean continueLoop = true;
                 if(scanner.hasNextInt()){
                     
                     int userInput = scanner.nextInt();
-                    if((userInput >= 1) && (userInput <= 6)) {      
+                    if((userInput >= 1) && (userInput <= 7)) {      
                         validInput = true;
          
                         if(userInput == 1){
@@ -77,7 +77,7 @@ boolean continueLoop = true;
                             continueLoop = false;
                         }
                     } else {
-                        System.out.println("Enter a valid option from 1-6");
+                        System.out.println("Enter a valid option from 1-7");
                     }
                 } else{
                     scanner.nextLine();

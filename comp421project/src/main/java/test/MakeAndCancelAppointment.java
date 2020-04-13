@@ -16,7 +16,7 @@ public class MakeAndCancelAppointment {
       String cemail = scanner1.nextLine(); 
       System.out.println("Enter the end time of the appointment (HH:MM:SS):");
       String endtime = scanner1.nextLine(); 
-      System.out.println("Enter the date of the appointment (M/D/Y):");
+      System.out.println("Enter the date of the appointment (YYYY-MM-DD):");
       String appdate = scanner1.nextLine(); 
       System.out.println("Enter the credit card number of the customer:");
       String creditcardnumber = scanner1.nextLine();
@@ -117,7 +117,7 @@ public class MakeAndCancelAppointment {
           String starttime = scanner1.nextLine(); 
           System.out.println("Enter the customer's email address:");
           String cemail = scanner1.nextLine(); 
-          System.out.println("Enter the date of the appointment (M/D/Y):");
+          System.out.println("Enter the date of the appointment (YYYY-MM-DD):");
           String appdate = scanner1.nextLine(); 
           int sqlCode = 0; // Variable to hold SQLCODE
           String sqlState = "00000"; // Variable to hold SQLSTATE
